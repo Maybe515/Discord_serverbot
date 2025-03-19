@@ -1,4 +1,4 @@
-サーバーを監視するDiscord bot  
+サーバー監視用のDiscord bot  
 コマンドでサーバープロセスを実行・停止したり、各サーバーの入退室（join, Left）を表示させるbot
 <br>
 
