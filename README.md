@@ -4,7 +4,7 @@
 
 ## 開発環境
 - Windows10 Pro 64bit
-- Python 3.13.2
+- Python 3.12.7
 - pip 25.0.1
 - discord.py 2.5.2
 
