@@ -3,9 +3,10 @@
 <br>
 
 ## 開発環境
-- Windows10
-- Python 3.8.2
-- discord.py 1.3.3
+- Windows10 Pro 64bit
+- Python 3.13.2
+- pip 25.0.1
+- discord.py 2.5.2
 
 ## コマンド一覧
 - /mcstart　　Minecraftのサーバープロセスを実行する
