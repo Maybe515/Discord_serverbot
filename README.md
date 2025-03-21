@@ -9,10 +9,18 @@
 
 ## コマンド一覧
 - /mcstart　　Minecraftのサーバープロセスを実行する
-- /mcstop　　Minecraftのサーバープロセスを終了させる
-- /ckstart　　Core Keeperのサーバープロセスを実行する
-- /ckstop　　Core Keeperのサーバープロセスを実行する
+- /mcstop　　Minecraftのサーバープロセスを停止させる
+- /ckstart　　CoreKeeperのサーバープロセスを実行する
+- /ckstop　　CoreKeeperのサーバープロセスを停止させる
+- /trstart　　Terrariaのサーバープロセスを実行する
+- /trstop　　Terrariaのサーバープロセスを停止させる
+- /mcid　　　MinecraftのGameIDを表示する
+- /ckid　　　CoreKeeperのGameIDを表示する
+- /trid　　　TerrariaのGameIDを表示する
 - /help　　　コマンド一覧を表示する
+
+## 要件
+
 
 ## 参考文献
 - [Pythonで実用Discord Bot(discordpy解説)](https://qiita.com/1ntegrale9/items/9d570ef8175cf178468f)
