@@ -65,7 +65,7 @@ async def tr_rep(message):
     reply = f"{message.author.mention} TRgameID"
     await chan_cmd.send(reply)
 
-async def tr_rep(message):
+async def needRole_rep(message):
     reply = f"{message.author.mention} このコマンドは権限が必要です"
     await chan_cmd.send(reply)
 
@@ -123,7 +123,7 @@ async def on_message(message):
                 await chan_cmd.send("ヘルプを表示します")
                 chan_cmd.send("")
     else:
-        await tr_rep(message) 
+        await needRole_rep(message) 
         return
 
 # Botの起動とDiscordサーバーへの接続
