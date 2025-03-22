@@ -5,19 +5,20 @@
 ## 開発環境
 - Windows10 Pro 64bit
 - Python 3.12.7
+- Anaconda 2.6.5
 - pip 25.0.1
 - discord.py 2.5.2
 
 ## コマンド一覧
-- /mcstart　　Minecraftのサーバープロセスを実行する
-- /mcstop　　Minecraftのサーバープロセスを停止させる
-- /ckstart　　CoreKeeperのサーバープロセスを実行する
-- /ckstop　　CoreKeeperのサーバープロセスを停止させる
-- /trstart　　Terrariaのサーバープロセスを実行する
-- /trstop　　Terrariaのサーバープロセスを停止させる
-- /mcid　　　MinecraftのGameIDを表示する
-- /ckid　　　CoreKeeperのGameIDを表示する
-- /trid　　　TerrariaのGameIDを表示する
+- /mcstart　　【Minecraft】サーバープロセスを実行する
+- /mcstop　　【Minecraft】サーバープロセスを停止させる
+- /ckstart　　【CoreKeeper】サーバープロセスを実行する
+- /ckstop　　【CoreKeeper】サーバープロセスを停止させる
+- /trstart　　【Terraria】サーバープロセスを実行する
+- /trstop　　【Terraria】サーバープロセスを停止させる
+- /mcid　　　【Minecraft】GameIDを表示する
+- /ckid　　　【CoreKeeper】GameIDを表示する
+- /trid　　　【Terraria】GameIDを表示する
 - /help　　　コマンド一覧を表示する
 
 ## 要件
