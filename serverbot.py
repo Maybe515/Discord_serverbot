@@ -30,7 +30,7 @@ class MCserver_process:     # Minecraft
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
-        input_string = "stop"
+        input_str = "stop"
         self.server.communicate(input_string.encode())
 MCserver = MCserver_process(mc_finm, maxMem, minMem)
 
@@ -41,7 +41,7 @@ class CKserver_process:     # CoreKeeper
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
-        input_string = "q"
+        input_str = "q"
         self.server.communicate(input_string.encode())
 CKserver = CKserver_process(fi_name, maxMem, minMem)
 
