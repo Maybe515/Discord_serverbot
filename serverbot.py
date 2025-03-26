@@ -7,7 +7,7 @@ import discord
 ## Access Token
 token = "botのアクセストークン"
 
-## Channel ID
+## Channel ID(int)
 chan_mc = ""    # Minecraft
 chan_ck = ""    # CoreKeeper
 chan_tr = ""    # Terraria
@@ -64,15 +64,15 @@ TRserver = TRserver_process(tr_finm)
 
 # リプライ内容
 async def mc_rep(message):
-    reply = f"{message.author.mention} MCgameID"
+    reply = f"{message.author.mention} MC_gameID"
     await chan_cmd.send(reply)
 
 async def ck_rep(message):
-    reply = f"{message.author.mention} CKgameID"
+    reply = f"{message.author.mention} CK_gameID"
     await chan_cmd.send(reply)
 
 async def tr_rep(message):
-    reply = f"{message.author.mention} TRgameID"
+    reply = f"{message.author.mention} TR_gameID"
     await chan_cmd.send(reply)
 
 # 起動時に動作する処理
@@ -80,6 +80,10 @@ async def tr_rep(message):
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     chan_cmd.send("ログインしました")
+    print(client.user.name)  # ボットの名前
+    print(client.user.id)  # ボットのID
+    print(discord.__version__)  # discord.pyのバージョン
+    print('------')
 
 # メッセージ受信時に動作する処理
 @client.event
