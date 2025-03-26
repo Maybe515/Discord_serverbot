@@ -1,6 +1,6 @@
 import subprocess
 
-# インストールした discord.py を読み込む
+# discord.py を読み込む
 import discord
 
 # Discordとbotの情報
