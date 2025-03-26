@@ -4,8 +4,8 @@ import subprocess
 import discord
 
 # Discordとbotの情報
-## TOKEN
-TOKEN = "botのアクセストークン"
+## Access Token
+token = "botのアクセストークン"
 
 ## Channel ID
 chan_mc = ""    # Minecraft
@@ -24,29 +24,29 @@ client = discord.Client()
 
 # サーバー操作用
 class MCserver_process:     # Minecraft
-    def __init__(self, mc_finm, maxMem,minMem):
+    def __init__(self, mc_finm, maxMem, minMem):
         self.server = None
         self.command = ["java", "-server",f"-Xms{minMem}", f"-Xmx{maxMem}", "-jar", mc_finm, "nogui"]
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
         input_str = "stop"
-        self.server.communicate(input_string.encode())
+        self.server.communicate(input_str.encode())
 MCserver = MCserver_process(mc_finm, maxMem, minMem)
 
 class CKserver_process:     # CoreKeeper
-    def __init__(self, fi_name, maxMem,minMem):
+    def __init__(self, fi_name):
         self.server = None
         self.command = ["batコマンドの処理"]
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
         input_str = "q"
-        self.server.communicate(input_string.encode())
-CKserver = CKserver_process(fi_name, maxMem, minMem)
+        self.server.communicate(input_str.encode())
+CKserver = CKserver_process(fi_name)
 
 class TRserver_process:     # Terraria
-    def __init__(self, fi_name, maxMem,minMem):
+    def __init__(self, fi_name):
         self.server = None
         self.command = ["batコマンドの処理"]
     def start(self):
@@ -54,7 +54,7 @@ class TRserver_process:     # Terraria
     def stop(self):
         input_str = ""
         self.server.communicate(input_str.encode())
-TRserver = TRserver_process(fi_name, maxMem, minMem)
+TRserver = TRserver_process(fi_name)
 
 # リプライ内容
 async def mc_rep(message):
@@ -120,4 +120,4 @@ async def on_message(message):
         chan_cmd.send("")
 
 # Botの起動とDiscordサーバーへの接続
-client.run(TOKEN)
+client.run(token)
