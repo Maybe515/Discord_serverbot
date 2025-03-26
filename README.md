@@ -1,4 +1,4 @@
-サーバー監視用のDiscord bot  
+サーバー監視・管理用Discord bot  
 コマンドでサーバープロセスを実行・停止したり、各サーバーの入退室（join, Left）を表示させるbot
 <br>
 
@@ -20,9 +20,6 @@
 - /ckid　　　【CoreKeeper】GameIDを表示する
 - /trid　　　【Terraria】GameIDを表示する
 - /help　　　コマンド一覧を表示する
-
-## 要件
-
 
 ## 参考文献
 - [Pythonで実用Discord Bot(discordpy解説)](https://qiita.com/1ntegrale9/items/9d570ef8175cf178468f)
