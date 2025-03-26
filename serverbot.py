@@ -19,6 +19,12 @@ mc_finm = "サーバー実行ファイル名.jar"
 maxMem = "8G"  # 任意の最大メモリ割り当てサイズ
 minMem = "8G"  # 任意の最小メモリ割り当てサイズ
 
+## Core Keeper
+ck_finm = "Launch.bat"
+
+## Terraria
+tr_finm = "Launch.bat"
+
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
 
@@ -35,7 +41,7 @@ class MCserver_process:     # Minecraft
 MCserver = MCserver_process(mc_finm, maxMem, minMem)
 
 class CKserver_process:     # CoreKeeper
-    def __init__(self, fi_name):
+    def __init__(self, ck_finm):
         self.server = None
         self.command = ["batコマンドの処理"]
     def start(self):
@@ -43,10 +49,10 @@ class CKserver_process:     # CoreKeeper
     def stop(self):
         input_str = "q"
         self.server.communicate(input_str.encode())
-CKserver = CKserver_process(fi_name)
+CKserver = CKserver_process(ck_finm)
 
 class TRserver_process:     # Terraria
-    def __init__(self, fi_name):
+    def __init__(self, tr_finm):
         self.server = None
         self.command = ["batコマンドの処理"]
     def start(self):
@@ -54,7 +60,7 @@ class TRserver_process:     # Terraria
     def stop(self):
         input_str = ""
         self.server.communicate(input_str.encode())
-TRserver = TRserver_process(fi_name)
+TRserver = TRserver_process(tr_finm)
 
 # リプライ内容
 async def mc_rep(message):
