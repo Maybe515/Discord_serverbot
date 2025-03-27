@@ -5,7 +5,7 @@ import discord
 
 # Discordとbotの情報
 ## Access Token
-token = "botのアクセストークン"
+token = "Botのアクセストークン"
 
 ## Channel ID(int)
 chan_mc = ""    # Minecraft
@@ -80,6 +80,9 @@ async def tr_rep(message):
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     print("ログインしました")
+    print(client.user.name)      # Bot名
+    print(client.user.id)        # BotID
+    print(discord.__version__)   # discord.pyのバージョン
     print("------")
 
 # メッセージ受信時に動作する処理
@@ -91,26 +94,26 @@ async def on_message(message):
         
     # Minecraftサーバー
     if message.content == "/mcstart":
-        await chan_mc.send("【Minecraft】サーバープロセスを実行します")
+        await chan_cmd.send("【Minecraft】サーバープロセスを実行します")
         MCserver.start()
     elif message.content == "/mcstop":
-        await chan_mc.send("【Minecraft】サーバープロセスを停止します")
+        await chan_cmd.send("【Minecraft】サーバープロセスを停止します")
         MCserver.stop()
 
     # CoreKeeperサーバー
     if message.content == "/ckstart":
-        await chan_ck.send("【oreKeeper】サーバープロセスを実行します")
+        await chan_cmd.send("【oreKeeper】サーバープロセスを実行します")
         CKserver.start()
     elif message.content == "/ckstop":
-        await chan_ck.send("【CoreKeeper】サーバープロセスを停止します")
+        await chan_cmd.send("【CoreKeeper】サーバープロセスを停止します")
         CKserver.stop()
 
     # Terrariaサーバー
     if message.content == "/trstart":
-        await chan_tr.send("【Terraria】サーバープロセスを実行します")
+        await chan_cmd.send("【Terraria】サーバープロセスを実行します")
         TRserver.start()
     elif message.content == "/trstop":
-        await chan_tr.send("【Terraria】サーバープロセスを停止します")
+        await chan_cmd.send("【Terraria】サーバープロセスを停止します")
         TRserver.stop()
 
     # GameID表示
@@ -125,6 +128,15 @@ async def on_message(message):
     if message.content == "/help":
         await chan_cmd.send("ヘルプを表示します")
         chan_cmd.send("")
+
+# 入退室ログの表示
+@client.event
+# Embedを使ったメッセージ送信
+embed = discord.Embed(title="おみくじ", description=f"{message.author.mention}さんの今日の運勢は！", color=0x2ECC69)
+embed.set_thumbnail(url=message.author.avatar_url)
+embed.add_field(name="[運勢] ", value=random.choice(('大吉', '吉', '凶', '大凶')), inline=False)
+await message.channel.send(embed=embed)
+
 
 # Botの起動とDiscordサーバーへの接続
 client.run(token)
