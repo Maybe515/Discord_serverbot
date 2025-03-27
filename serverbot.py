@@ -62,7 +62,7 @@ class TRserver_process:     # Terraria
         self.server.communicate(input_str.encode())
 TRserver = TRserver_process(tr_finm)
 
-# リプライ内容
+# リプライ
 async def mc_rep(message):
     reply = f"{message.author.mention} MC_gameID"
     await chan_cmd.send(reply)
@@ -75,14 +75,41 @@ async def tr_rep(message):
     reply = f"{message.author.mention} TR_gameID"
     await chan_cmd.send(reply)
 
+
+# Embedメッセージ
+async def mc_emb(message):    # Minecraft
+    if state == "join":
+        embed = discord.embed(title="Player Join", description="Joined player：" + player, color="Green")
+        await chan_mc.send(embed)
+    elif state == "left":
+        embed = discord.embed(title="Player Left", description="Lefted player：" + player, color="Red")
+        await chan_mc.send(embed)
+
+async def ck_emb(message):    # CoreKeeper
+    if state == "join":
+        embed = discord.embed(title="Player Join", description="Joined player：" + player, color="Green")
+        await chan_ck.send(embed)
+    elif state == "left":
+        embed = discord.embed(title="Player Left", description="Lefted player：" + player, color="Red")
+        await chan_ck.send(embed)
+
+async def tr_emb(message):    # Terraria
+    if state == "join":
+        embed = discord.embed(title="Player Join", description="Joined player：" + player, color="Green")
+        await chan_tr.send(embed)
+    elif state == "left":
+        embed = discord.embed(title="Player Left", description="Lefted player：" + player, color="Red")
+        await chan_tr.send(embed)
+
+
 # 起動時に動作する処理
 @client.event
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     print("ログインしました")
     print(client.user.name)      # Bot名
-    print(client.user.id)        # BotID
-    print(discord.__version__)   # discord.pyのバージョン
+    print(client.user.id)        # Bot ID
+    print(discord.__version__)   # discord.py バージョン
     print("------")
 
 # メッセージ受信時に動作する処理
@@ -131,11 +158,6 @@ async def on_message(message):
 
 # 入退室ログの表示
 @client.event
-# Embedを使ったメッセージ送信
-embed = discord.Embed(title="おみくじ", description=f"{message.author.mention}さんの今日の運勢は！", color=0x2ECC69)
-embed.set_thumbnail(url=message.author.avatar_url)
-embed.add_field(name="[運勢] ", value=random.choice(('大吉', '吉', '凶', '大凶')), inline=False)
-await message.channel.send(embed=embed)
 
 
 # Botの起動とDiscordサーバーへの接続
