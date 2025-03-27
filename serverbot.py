@@ -79,11 +79,8 @@ async def tr_rep(message):
 @client.event
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
-    chan_cmd.send("ログインしました")
-    print(client.user.name)  # ボットの名前
-    print(client.user.id)  # ボットのID
-    print(discord.__version__)  # discord.pyのバージョン
-    print('------')
+    print("ログインしました")
+    print("------")
 
 # メッセージ受信時に動作する処理
 @client.event
