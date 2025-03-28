@@ -28,6 +28,9 @@ tr_finm = "Launch.bat"
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
 
+# debug
+player = "Maybe515"
+
 # サーバー操作用
 class MCserver_process:     # Minecraft
     def __init__(self, mc_finm, maxMem, minMem):
@@ -78,26 +81,26 @@ async def tr_rep(message):
 
 # Embedメッセージ
 async def mc_emb(message):    # Minecraft
-    if state == "join":
+    if state == "mc_join":
         embed = discord.embed(title="Player Join", description="Joined player：" + player, color="Green")
         await chan_mc.send(embed)
-    elif state == "left":
+    elif state == "mc_left":
         embed = discord.embed(title="Player Left", description="Lefted player：" + player, color="Red")
         await chan_mc.send(embed)
 
 async def ck_emb(message):    # CoreKeeper
-    if state == "join":
+    if state == "ck_join":
         embed = discord.embed(title="Player Join", description="Joined player：" + player, color="Green")
         await chan_ck.send(embed)
-    elif state == "left":
+    elif state == "ck_left":
         embed = discord.embed(title="Player Left", description="Lefted player：" + player, color="Red")
         await chan_ck.send(embed)
 
 async def tr_emb(message):    # Terraria
-    if state == "join":
+    if state == "tr_join":
         embed = discord.embed(title="Player Join", description="Joined player：" + player, color="Green")
         await chan_tr.send(embed)
-    elif state == "left":
+    elif state == "tr_left":
         embed = discord.embed(title="Player Left", description="Lefted player：" + player, color="Red")
         await chan_tr.send(embed)
 
