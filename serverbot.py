@@ -82,27 +82,27 @@ async def tr_rep(message):
 # Embedメッセージ
 async def mc_emb(message):    # Minecraft
     if state == "mc_join":
-        embed = discord.embed(title="Player Join", description="Joined player：" + player, color="Green")
-        await chan_mc.send(embed)
+        embed = discord.embed(title="Player Join", description="Joined player：" + player, color=0x57F287)
+        await chan_mc.send(embed=embed)
     elif state == "mc_left":
-        embed = discord.embed(title="Player Left", description="Lefted player：" + player, color="Red")
-        await chan_mc.send(embed)
+        embed = discord.embed(title="Player Left", description="Lefted player：" + player, color=0xED4245)
+        await chan_mc.send(embed=embed)
 
 async def ck_emb(message):    # CoreKeeper
     if state == "ck_join":
-        embed = discord.embed(title="Player Join", description="Joined player：" + player, color="Green")
-        await chan_ck.send(embed)
+        embed = discord.embed(title="Player Join", description="Joined player：" + player, color=0x57F287)
+        await chan_ck.send(embed=embed)
     elif state == "ck_left":
-        embed = discord.embed(title="Player Left", description="Lefted player：" + player, color="Red")
-        await chan_ck.send(embed)
+        embed = discord.embed(title="Player Left", description="Lefted player：" + player, color=0xED4245)
+        await chan_ck.send(embed=embed)
 
 async def tr_emb(message):    # Terraria
     if state == "tr_join":
-        embed = discord.embed(title="Player Join", description="Joined player：" + player, color="Green")
-        await chan_tr.send(embed)
+        embed = discord.embed(title="Player Join", description="Joined player：" + player, color=0x57F287)
+        await chan_tr.send(embed=embed)
     elif state == "tr_left":
-        embed = discord.embed(title="Player Left", description="Lefted player：" + player, color="Red")
-        await chan_tr.send(embed)
+        embed = discord.embed(title="Player Left", description="Lefted player：" + player, color=0xED4245)
+        await chan_tr.send(embed=embed)
 
 
 # 起動時に動作する処理
