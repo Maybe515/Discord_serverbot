@@ -1,34 +1,33 @@
+# Import Libralies
 import subprocess
-
-# discord.py を読み込む
 import discord
 
 # Discordとbotの情報
 ## Access Token
 token = "Botのアクセストークン"
 
-## Channel ID(int)
+## Channel ID (int)
 chan_mc = ""    # Minecraft
 chan_ck = ""    # CoreKeeper
 chan_tr = ""    # Terraria
 chan_cmd = ""   # Commmand
 
+## GameID (str)
+MC_gameID = ""    # Minecraft
+CK_gameID = ""    # CoreKeeper
+TR_gameID = ""    # Terraria
+
 # サーバープロセスの情報
-## Minecraft
-mc_finm = "サーバー実行ファイル名.jar"
+mc_finm = "サーバー実行ファイル名.jar"        # Minecraft
 maxMem = "8G"  # 任意の最大メモリ割り当てサイズ
 minMem = "8G"  # 任意の最小メモリ割り当てサイズ
-
-## Core Keeper
-ck_finm = "Launch.bat"
-
-## Terraria
-tr_finm = "Launch.bat"
+ck_finm = "Launch.bat"    # Core Keeper
+tr_finm = "Launch.bat"    # Terraria
 
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
 
-# debug
+# test, debug
 player = "Maybe515"
 
 # サーバー操作用
@@ -67,15 +66,15 @@ TRserver = TRserver_process(tr_finm)
 
 # リプライ
 async def mc_rep(message):
-    reply = f"{message.author.mention} MC_gameID"
+    reply = f"{message.author.mention} " + MC_gameID
     await chan_cmd.send(reply)
 
 async def ck_rep(message):
-    reply = f"{message.author.mention} CK_gameID"
+    reply = f"{message.author.mention} " + CK_gameID
     await chan_cmd.send(reply)
 
 async def tr_rep(message):
-    reply = f"{message.author.mention} TR_gameID"
+    reply = f"{message.author.mention} " + TR_gameID
     await chan_cmd.send(reply)
 
 
@@ -104,15 +103,28 @@ async def tr_left(message):
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
     await chan_tr.send(embed=embed)
 
+# ヘルプテキスト
+help_str = """
+/mcstart   【Minecraft】サーバープロセスを実行
+/mcstop    【Minecraft】サーバープロセスを停止
+/ckstart   【CoreKeeper】サーバープロセスを実行
+/ckstop    【CoreKeeper】サーバープロセスを停止
+/trstart   【Terraria】サーバープロセスを実行
+/trstop    【Terraria】サーバープロセスを停止
+/mcid      【Minecraft】GameIDを表示
+/ckid      【CoreKeeper】GameIDを表示
+/trid      【Terraria】GameIDを表示
+/help      コマンド一覧を表示
+"""
 
 # 起動時に動作する処理
 @client.event
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     print("ログインしました")
-    print(client.user.name)      # Bot名
+    print(client.user.name)      # Bot Name
     print(client.user.id)        # Bot ID
-    print(discord.__version__)   # discord.py バージョン
+    print(discord.__version__)   # discord.py Version
     print("------")
 
 # メッセージ受信時に動作する処理
@@ -156,27 +168,26 @@ async def on_message(message):
 
     # ヘルプ
     if message.content == "/help":
-        await chan_cmd.send("ヘルプを表示します")
-        chan_cmd.send("")
+        await chan_cmd.send(help_str)
 
-# 入退室ログの表示
+# 入退室を表示
 @client.event
     # Minecraft
-    if state == "mc_join":
+    if status == "mc_join":
         await mc_join(message)
-    elif state == "mc_left":
+    elif status == "mc_left":
         await mc_left(message)
 
     # CoreKeeper
-    if state == "ck_join":
+    if status == "ck_join":
         await ck_join(message)
-    elif state == "ck_left":
+    elif status == "ck_left":
         await ck_left(message)
 
     # Terraria
-    if state == "tr_join":
+    if status == "tr_join":
         await tr_join(message)
-    elif state == "tr_left":
+    elif status == "tr_left":
         await tr_left(message)
         
 # Botの起動とDiscordサーバーへの接続
