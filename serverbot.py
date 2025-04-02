@@ -80,29 +80,29 @@ async def tr_rep(message):
 
 
 # Embedメッセージ
-async def mc_emb(message):    # Minecraft
-    if state == "mc_join":
-        embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
-        await chan_mc.send(embed=embed)
-    elif state == "mc_left":
-        embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
-        await chan_mc.send(embed=embed)
+## Minecraft
+async def mc_join(message):    
+    embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
+    await chan_mc.send(embed=embed)
+async def mc_left(message):    
+    embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
+    await chan_mc.send(embed=embed)
 
-async def ck_emb(message):    # CoreKeeper
-    if state == "ck_join":
-        embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
-        await chan_ck.send(embed=embed)
-    elif state == "ck_left":
-        embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
-        await chan_ck.send(embed=embed)
+## CoreKeeper
+async def ck_join(message): 
+    embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
+    await chan_ck.send(embed=embed)
+async def ck_left(message):     
+    embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
+    await chan_ck.send(embed=embed)
 
-async def tr_emb(message):    # Terraria
-    if state == "tr_join":
-        embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
-        await chan_tr.send(embed=embed)
-    elif state == "tr_left":
-        embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
-        await chan_tr.send(embed=embed)
+## Terraria
+async def tr_join(message):
+    embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
+    await chan_tr.send(embed=embed)
+async def tr_left(message):
+    embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
+    await chan_tr.send(embed=embed)
 
 
 # 起動時に動作する処理
@@ -161,7 +161,23 @@ async def on_message(message):
 
 # 入退室ログの表示
 @client.event
+    # Minecraft
+    if state == "mc_join":
+        await mc_join(message)
+    elif state == "mc_left":
+        await mc_left(message)
 
+    # CoreKeeper
+    if state == "ck_join":
+        await ck_join(message)
+    elif state == "ck_left":
+        await ck_left(message)
 
+    # Terraria
+    if state == "tr_join":
+        await tr_join(message)
+    elif state == "tr_left":
+        await tr_left(message)
+        
 # Botの起動とDiscordサーバーへの接続
 client.run(token)
