@@ -2,34 +2,33 @@
 import subprocess
 import discord
 
-# Discordとbotの情報
-## Access Token
+# Access Token
 token = ""
 
-## Channel ID (int)
+# Channel ID (int)
 chan_mc = ""    # Minecraft
 chan_ck = ""    # CoreKeeper
 chan_tr = ""    # Terraria
-chan_cmd = ""   # Commmand
+chan_cmd = ""   # Command
 
 # GameID (str)
 MC_gameID = ""    # Minecraft
 CK_gameID = ""    # CoreKeeper
 TR_gameID = ""    # Terraria
 
-# サーバープロセスの情報
+# バッチコマンド用
 mc_finm = "サーバー実行ファイル名.jar"        # Minecraft
 maxMem = "8G"  # 任意の最大メモリ割り当てサイズ
 minMem = "8G"  # 任意の最小メモリ割り当てサイズ
 ck_finm = "Launch.bat"    # Core Keeper
 tr_finm = "Launch.bat"    # Terraria
 
-# 接続に必要なオブジェクトを生成
-client = discord.Client()
-
 # test, debug
 player = "Maybe515"
 status = "mc_join"
+
+# 接続に必要なオブジェクトを生成
+client = discord.Client()
 
 # サーバー操作用
 class MCserver_process:     # Minecraft
@@ -66,38 +65,35 @@ class TRserver_process:     # Terraria
 TRserver = TRserver_process(tr_finm)
 
 # リプライ
-async def mc_rep(message):
+async def mc_rep(message):    # Minecraft
     reply = f"{message.author.mention} " + MC_gameID
     await chan_cmd.send(reply)
 
-async def ck_rep(message):
+async def ck_rep(message):    # CoreKeeper
     reply = f"{message.author.mention} " + CK_gameID
     await chan_cmd.send(reply)
 
-async def tr_rep(message):
+async def tr_rep(message):    # Terraria
     reply = f"{message.author.mention} " + TR_gameID
     await chan_cmd.send(reply)
 
 
 # Embedメッセージ
-## Minecraft
-async def mc_join():    
+async def mc_join():    # Minecraft
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_mc.send(embed=embed)
 async def mc_left():    
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
     await chan_mc.send(embed=embed)
 
-## CoreKeeper
-async def ck_join(): 
+async def ck_join():    # CoreKeeper
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_ck.send(embed=embed)
 async def ck_left():     
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
     await chan_ck.send(embed=embed)
 
-## Terraria
-async def tr_join():
+async def tr_join():    # Terraria
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_tr.send(embed=embed)
 async def tr_left():
