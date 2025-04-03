@@ -76,21 +76,21 @@ async def tr_rep(message):    # Terraria
     await chan_cmd.send(reply)
         
 # Embedメッセージ
-async def mc_join():    # Minecraft
+async def mc_joined():    # Minecraft
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_mc.send(embed=embed)
 async def mc_left():    
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
     await chan_mc.send(embed=embed)
 
-async def ck_join():    # CoreKeeper
+async def ck_joined():    # CoreKeeper
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_ck.send(embed=embed)
 async def ck_left():     
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
     await chan_ck.send(embed=embed)
 
-async def tr_join():    # Terraria
+async def tr_joined():    # Terraria
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_tr.send(embed=embed)
 async def tr_left():
@@ -168,19 +168,19 @@ async def on_message(message):
 @client.event
 # Minecraft
 if status == "mc_join":
-    await mc_join()
+    await mc_joined()
 elif status == "mc_left":
     await mc_left()
 
 # CoreKeeper
 if status == "ck_join":
-    await ck_join()
+    await ck_joined()
 elif status == "ck_left":
     await ck_left()
 
 # Terraria
 if status == "tr_join":
-    await tr_join()
+    await tr_joined()
 elif status == "tr_left":
     await tr_left()
         
