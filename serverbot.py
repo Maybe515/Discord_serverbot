@@ -12,7 +12,7 @@ chan_ck = ""    # CoreKeeper
 chan_tr = ""    # Terraria
 chan_cmd = ""   # Commmand
 
-## GameID (str)
+# GameID (str)
 MC_gameID = ""    # Minecraft
 CK_gameID = ""    # CoreKeeper
 TR_gameID = ""    # Terraria
@@ -34,7 +34,7 @@ player = "Maybe515"
 class MCserver_process:     # Minecraft
     def __init__(self, mc_finm, maxMem, minMem):
         self.server = None
-        self.command = ["java", "-server",f"-Xms{minMem}", f"-Xmx{maxMem}", "-jar", mc_finm, "nogui"]
+        self.command = ["java", "-server",f"-Xms{minMem}", f"-Xmx{maxMem}", "-jar", mc_finm, "nogui", "pause"]
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
@@ -45,7 +45,7 @@ MCserver = MCserver_process(mc_finm, maxMem, minMem)
 class CKserver_process:     # CoreKeeper
     def __init__(self, ck_finm):
         self.server = None
-        self.command = ["batコマンドの処理"]
+        self.command = ["batコマンド"]
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
@@ -56,7 +56,7 @@ CKserver = CKserver_process(ck_finm)
 class TRserver_process:     # Terraria
     def __init__(self, tr_finm):
         self.server = None
-        self.command = ["batコマンドの処理"]
+        self.command = ["batコマンド"]
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
@@ -170,7 +170,7 @@ async def on_message(message):
     if message.content == "/help":
         await chan_cmd.send(help_str)
 
-# 入退室を表示
+# 入退室をEmbedメッセージで表示
 @client.event
     # Minecraft
     if status == "mc_join":
