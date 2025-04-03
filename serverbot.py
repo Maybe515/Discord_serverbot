@@ -4,7 +4,7 @@ import discord
 
 # Discordとbotの情報
 ## Access Token
-token = "Botのアクセストークン"
+token = ""
 
 ## Channel ID (int)
 chan_mc = ""    # Minecraft
@@ -35,7 +35,7 @@ status = "mc_join"
 class MCserver_process:     # Minecraft
     def __init__(self, mc_finm, maxMem, minMem):
         self.server = None
-        self.command = ["java", "-server",f"-Xms{minMem}", f"-Xmx{maxMem}", "-jar", mc_finm, "nogui", "pause"]
+        self.command = ["java", "-server",f"-Xms{minMem}", f"-Xmx{maxMem}", "-jar", mc_finm, "nogui", "pause"]    # バッチコマンド
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
@@ -46,7 +46,7 @@ MCserver = MCserver_process(mc_finm, maxMem, minMem)
 class CKserver_process:     # CoreKeeper
     def __init__(self, ck_finm):
         self.server = None
-        self.command = ["batコマンド"]
+        self.command = [""]    # バッチコマンド
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
@@ -57,7 +57,7 @@ CKserver = CKserver_process(ck_finm)
 class TRserver_process:     # Terraria
     def __init__(self, tr_finm):
         self.server = None
-        self.command = ["batコマンド"]
+        self.command = [""]    # バッチコマンド
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
