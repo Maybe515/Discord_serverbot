@@ -29,6 +29,7 @@ client = discord.Client()
 
 # test, debug
 player = "Maybe515"
+status = "mc_join"
 
 # サーバー操作用
 class MCserver_process:     # Minecraft
@@ -80,26 +81,26 @@ async def tr_rep(message):
 
 # Embedメッセージ
 ## Minecraft
-async def mc_join(message):    
+async def mc_join():    
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_mc.send(embed=embed)
-async def mc_left(message):    
+async def mc_left():    
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
     await chan_mc.send(embed=embed)
 
 ## CoreKeeper
-async def ck_join(message): 
+async def ck_join(): 
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_ck.send(embed=embed)
-async def ck_left(message):     
+async def ck_left():     
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
     await chan_ck.send(embed=embed)
 
 ## Terraria
-async def tr_join(message):
+async def tr_join():
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_tr.send(embed=embed)
-async def tr_left(message):
+async def tr_left():
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
     await chan_tr.send(embed=embed)
 
@@ -174,21 +175,21 @@ async def on_message(message):
 @client.event
     # Minecraft
     if status == "mc_join":
-        await mc_join(message)
+        await mc_join()
     elif status == "mc_left":
-        await mc_left(message)
+        await mc_left()
 
     # CoreKeeper
     if status == "ck_join":
-        await ck_join(message)
+        await ck_join()
     elif status == "ck_left":
-        await ck_left(message)
+        await ck_left()
 
     # Terraria
     if status == "tr_join":
-        await tr_join(message)
+        await tr_join()
     elif status == "tr_left":
-        await tr_left(message)
+        await tr_left()
         
 # Botの起動とDiscordサーバーへの接続
 client.run(token)
