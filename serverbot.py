@@ -68,16 +68,13 @@ TRserver = TRserver_process(tr_finm)
 async def mc_rep(message):    # Minecraft
     reply = f"{message.author.mention} " + MC_gameID
     await chan_cmd.send(reply)
-
 async def ck_rep(message):    # CoreKeeper
     reply = f"{message.author.mention} " + CK_gameID
     await chan_cmd.send(reply)
-
 async def tr_rep(message):    # Terraria
     reply = f"{message.author.mention} " + TR_gameID
     await chan_cmd.send(reply)
-
-
+        
 # Embedメッセージ
 async def mc_join():    # Minecraft
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
@@ -169,23 +166,23 @@ async def on_message(message):
 
 # 入退室をEmbedメッセージで表示
 @client.event
-    # Minecraft
-    if status == "mc_join":
-        await mc_join()
-    elif status == "mc_left":
-        await mc_left()
+# Minecraft
+if status == "mc_join":
+    await mc_join()
+elif status == "mc_left":
+    await mc_left()
 
-    # CoreKeeper
-    if status == "ck_join":
-        await ck_join()
-    elif status == "ck_left":
-        await ck_left()
+# CoreKeeper
+if status == "ck_join":
+    await ck_join()
+elif status == "ck_left":
+    await ck_left()
 
-    # Terraria
-    if status == "tr_join":
-        await tr_join()
-    elif status == "tr_left":
-        await tr_left()
+# Terraria
+if status == "tr_join":
+    await tr_join()
+elif status == "tr_left":
+    await tr_left()
         
 # Botの起動とDiscordサーバーへの接続
 client.run(token)
