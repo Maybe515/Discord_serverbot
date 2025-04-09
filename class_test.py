@@ -14,7 +14,9 @@ player = "Maybe515"
 status = "mc_join"
 
 # Embedメッセージ(class)
-class mc(self):    # Minecraft
+class mc:    # Minecraft
+    def __init__(self):
+        self.embed = None
     def joined(self, player):
         self.embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
         await chan_mc.send(self.embed=self.embed)
@@ -22,7 +24,9 @@ class mc(self):    # Minecraft
         self.embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
         await chan_mc.send(self.embed=self.embed)
 
-class ck(self):    # CoreKeeper
+class ck:    # CoreKeeper
+    def __init__(self):
+        self.embed = None
     def joined(self, player):
         self.embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
         await chan_ck.send(self.embed=self.embed)
@@ -30,7 +34,9 @@ class ck(self):    # CoreKeeper
         self.embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
         await chan_ck.send(self.embed=self.embed)
 
-class tr(self):    # Terraria
+class tr:    # Terraria
+    def __init__(self):
+        self.embed = None
     def joined(self, player):
         self.embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
         await chan_tr.send(self.embed=self.embed)
