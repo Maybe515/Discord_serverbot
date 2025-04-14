@@ -34,13 +34,13 @@ client = discord.Client()
 class MCserver_process:     # Minecraft
     def __init__(self, jarFi, maxMem, minMem):
         self.server = None
-        self.command = ["java", "-server",f"-Xms{minMem}", f"-Xmx{maxMem}", "-jar", jarFile, "nogui", "pause"]    # バッチコマンド
+        self.command = ["java", "-server",f"-Xms{minMem}", f"-Xmx{maxMem}", "-jar", jarFi, "nogui", "pause"]    # バッチコマンド
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
         input_str = "stop"
         self.server.communicate(input_str.encode())
-MCserver = MCserver_process(jarFile, maxMem, minMem)
+MCserver = MCserver_process(jarFi, maxMem, minMem)
 
 class CKserver_process:     # Core Keeper
     def __init__(self, ck_finm):
@@ -68,7 +68,7 @@ TRserver = TRserver_process(tr_finm)
 async def mc_rep(message):    # Minecraft
     reply = f"{message.author.mention} " + id_mc
     await cha_cmd.send(reply)
-async def ck_rep(message):    # CoreKeeper
+async def ck_rep(message):    # Core Keeper
     reply = f"{message.author.mention} " + id_ck
     await cha_cmd.send(reply)
 async def tr_rep(message):    # Terraria
@@ -101,8 +101,8 @@ async def tr_left():
 help_str = """
 /mcstart   【Minecraft】サーバープロセスを実行
 /mcstop    【Minecraft】サーバープロセスを停止
-/ckstart   【CoreKeeper】サーバープロセスを実行
-/ckstop    【CoreKeeper】サーバープロセスを停止
+/ckstart   【Core Keeper】サーバープロセスを実行
+/ckstop    【Core Keeper】サーバープロセスを停止
 /trstart   【Terraria】サーバープロセスを実行
 /trstop    【Terraria】サーバープロセスを停止
 /mcid      【Minecraft】GameIDを表示
@@ -136,7 +136,7 @@ async def on_message(message):
         await cha_cmd.send("【Minecraft】サーバープロセスを停止します")
         MCserver.stop()
 
-    # CoreKeeperサーバー
+    # Core Keeperサーバー
     if message.content == "/ckstart":
         await cha_cmd.send("【CoreKeeper】サーバープロセスを実行します")
         CKserver.start()
@@ -155,7 +155,7 @@ async def on_message(message):
     # GameID表示
     if message.content == "/mcid":   # Minecraft
         await mc_rep(message)
-    elif message.content == "/ckid": # CoreKeeper
+    elif message.content == "/ckid": # Core Keeper
         await ck_rep(message)
     elif message.content == "/trid": # Terraria
         await tr_rep(message)        
@@ -172,7 +172,7 @@ if status == "mc_join":
 elif status == "mc_left":
     await mc_left()
 
-# CoreKeeper
+# Core Keeper
 if status == "ck_join":
     await ck_joined()
 elif status == "ck_left":
