@@ -90,7 +90,8 @@ async def mcstop(interaction: Interaction):
     await interaction.response.send_message("Minecraftサーバーは既に停止されています")
 
 def stop_server(self):  # サーバーを停止するコマンド
-  self.server.communicate("stop".encode())
+  str = "stop"
+  self.server.communicate(str.encode())
 
 @client.tree.command(name="ckstart", description="Core Keeperサーバーを起動する")    # /ckstart
 async def ckstart(interaction: Interaction):
