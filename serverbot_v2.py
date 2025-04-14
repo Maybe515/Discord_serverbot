@@ -2,10 +2,10 @@
 TOKEN = ""
 
 # Channel ID (int)
-CHA_MC = ""    # Minecraft
-CHA_CK = ""    # Core Keeper
-CHA_TR = ""    # Terraria
-CHA_CMD = ""   # Command
+# CHA_MC = ""    # Minecraft
+# CHA_CK = ""    # Core Keeper
+# CHA_TR = ""    # Terraria
+# CHA_CMD = ""   # Command
 
 # Game ID (str)
 ID_MC = ""    # Minecraft
@@ -18,8 +18,6 @@ SERVER_PATH = "minecraft/java/paper"  # Minecraftサーバー実行ファイル�
 SCREEN_NAME = "papermc"  # 使用するscreenセッション名
 MAX_RAM = "8"      # 任意の最大メモリ割り当てサイズ（デフォルト：5）
 MIN_RAM = "4"      # 任意の最小メモリ割り当てサイズ（デフォルト：2）
-BAT_CK = "Launch.bat"    # Core Keeper
-BAT_TR = "Launch.bat"    # Terraria
 
 # ヘルプテキスト
 HELP_STR = """
