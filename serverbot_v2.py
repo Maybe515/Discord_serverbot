@@ -50,14 +50,14 @@ class MyClient(Client):
     self.tree = CommandTree(self)
 
   async def setup_hook(self) -> None:
-      await self.tree.sync()
+    await self.tree.sync()
 
   async def on_ready(self):
-      await client.change_presence(activity=Game(name="/helpでヘルプを表示"))  #「○○をプレイ中」と表示するところ
+    await client.change_presence(activity=Game(name="/helpでヘルプを表示"))  #「○○をプレイ中」と表示するところ
     # 起動したらターミナルにログイン通知が表示される  
     print(f"login: {self.user.name} [{self.user.id}]")    # Bot Name, [Bot ID]
-      print(discord.__version__)   # discord.py Version
-      print("------")
+    print(discord.__version__)   # discord.py Version
+    print("------")
 
 # 接続に必要なオブジェクトを生成
 intents = Intents.default()
@@ -65,24 +65,34 @@ client = MyClient(intents=intents)
 
 @client.tree.command(name="hello", description="Hello, world!")    # /hello
 async def hello(interaction: Interaction):
-    await interaction.response.send_message(f'Hello, {interaction.user.mention}!')
+  await interaction.response.send_message(f"Hello, {interaction.user.mention}!")
 
 @client.tree.command(name="mcstart", description="Minecraftサーバーを起動する")    # /mcstart
 async def mcstart(interaction: Interaction):
-    if is_server_running():
-        await interaction.response.send_message('Minecraftサーバーは既に起動しています')
-    else:
-        start_server()
-        await interaction.response.send_message('Minecraftサーバーを起動します')
+  if is_server_running():
+    await interaction.response.send_message("Minecraftサーバーは既に起動しています")
+  else:
+    start_server()
+    await interaction.response.send_message("Minecraftサーバーを起動します")
 
 def is_server_running():  # サーバーが動作しているか確認する関数
-    process = subprocess.Popen(f"screen -ls {SCREEN_NAME}", stdout=subprocess.PIPE, shell=True)
-    output, _ = process.communicate()
-    return SCREEN_NAME in output.decode()
+  process = subprocess.Popen(f"screen -ls {SCREEN_NAME}", stdout=subprocess.PIPE, shell=True)
+  output, _ = process.communicate()
+  return SCREEN_NAME in output.decode()
 
 def start_server():  # screenを利用してサーバーを起動するコマンド
-    subprocess.Popen(f"screen -dmS {SCREEN_NAME} java -Xmx{MAX_RAM}G -Xms{MIN_RAM}G -jar {JAR_FILE} nogui", shell=True)
+  subprocess.Popen(f"screen -dmS {SCREEN_NAME} java -Xmx{MAX_RAM}G -Xms{MIN_RAM}G -jar {JAR_FILE} nogui", shell=True)
 
+@client.tree.command(name="mcstop", description="Minecraftサーバーを停止する")    # /mcstop
+async def mcstop(interaction: Interaction):
+  if is_server_running():
+    stop_server()
+    await interaction.response.send_message("Minecraftサーバーを停止します")
+  else:
+    await interaction.response.send_message("Minecraftサーバーは既に停止されています")
+
+def stop_server(self):  # サーバーを停止するコマンド
+  self.server.communicate("stop".encode())
 
 @client.tree.command(name="ckstart", description="Core Keeperサーバーを起動する")    # /ckstart
 async def ckstart(interaction: Interaction):
