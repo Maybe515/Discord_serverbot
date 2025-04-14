@@ -6,21 +6,21 @@ import discord
 token = ""
 
 # Channel ID (int)
-chan_mc = ""    # Minecraft
-chan_ck = ""    # CoreKeeper
-chan_tr = ""    # Terraria
-chan_cmd = ""   # Command
+cha_mc = ""    # Minecraft
+cha_ck = ""    # Core Keeper
+cha_tr = ""    # Terraria
+cha_cmd = ""   # Command
 
-# GameID (str)
-MC_gameID = ""    # Minecraft
-CK_gameID = ""    # CoreKeeper
-TR_gameID = ""    # Terraria
+# Game ID (str)
+id_mc = ""    # Minecraft
+id_ck = ""    # Core Keeper
+id_tr = ""    # Terraria
 
 # バッチコマンド用
-mc_finm = "サーバー実行ファイル名.jar"        # Minecraft
+jarFi = "サーバー実行ファイル名.jar"        # Minecraft
 maxMem = "8G"  # 任意の最大メモリ割り当てサイズ
-minMem = "8G"  # 任意の最小メモリ割り当てサイズ
-ck_finm = "Launch.bat"    # Core Keeper
+minMem = "4G"  # 任意の最小メモリ割り当てサイズ
+ck_finm = "Launch.bat"    # CoreKeeper
 tr_finm = "Launch.bat"    # Terraria
 
 # test, debug
@@ -32,17 +32,17 @@ client = discord.Client()
 
 # サーバー操作用
 class MCserver_process:     # Minecraft
-    def __init__(self, mc_finm, maxMem, minMem):
+    def __init__(self, jarFi, maxMem, minMem):
         self.server = None
-        self.command = ["java", "-server",f"-Xms{minMem}", f"-Xmx{maxMem}", "-jar", mc_finm, "nogui", "pause"]    # バッチコマンド
+        self.command = ["java", "-server",f"-Xms{minMem}", f"-Xmx{maxMem}", "-jar", jarFile, "nogui", "pause"]    # バッチコマンド
     def start(self):
         self.server = subprocess.Popen(self.command, stdin=subprocess.PIPE)
     def stop(self):
         input_str = "stop"
         self.server.communicate(input_str.encode())
-MCserver = MCserver_process(mc_finm, maxMem, minMem)
+MCserver = MCserver_process(jarFile, maxMem, minMem)
 
-class CKserver_process:     # CoreKeeper
+class CKserver_process:     # Core Keeper
     def __init__(self, ck_finm):
         self.server = None
         self.command = [""]    # バッチコマンド
@@ -66,36 +66,36 @@ TRserver = TRserver_process(tr_finm)
 
 # リプライ
 async def mc_rep(message):    # Minecraft
-    reply = f"{message.author.mention} " + MC_gameID
-    await chan_cmd.send(reply)
+    reply = f"{message.author.mention} " + id_mc
+    await cha_cmd.send(reply)
 async def ck_rep(message):    # CoreKeeper
-    reply = f"{message.author.mention} " + CK_gameID
-    await chan_cmd.send(reply)
+    reply = f"{message.author.mention} " + id_ck
+    await cha_cmd.send(reply)
 async def tr_rep(message):    # Terraria
-    reply = f"{message.author.mention} " + TR_gameID
-    await chan_cmd.send(reply)
+    reply = f"{message.author.mention} " + id_tr
+    await cha_cmd.send(reply)
         
 # Embedメッセージ
 async def mc_joined():    # Minecraft
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
-    await chan_mc.send(embed=embed)
+    await cha_mc.send(embed=embed)
 async def mc_left():    
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
-    await chan_mc.send(embed=embed)
+    await cha_mc.send(embed=embed)
 
-async def ck_joined():    # CoreKeeper
+async def ck_joined():    # Core Keeper
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
-    await chan_ck.send(embed=embed)
+    await cha_ck.send(embed=embed)
 async def ck_left():     
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
-    await chan_ck.send(embed=embed)
+    await cha_ck.send(embed=embed)
 
 async def tr_joined():    # Terraria
     embed = discord.embed(title="Player Joined", description="Player：" + player, color=0x57F287)
     await chan_tr.send(embed=embed)
 async def tr_left():
     embed = discord.embed(title="Player Left", description="Player：" + player, color=0xED4245)
-    await chan_tr.send(embed=embed)
+    await cha_tr.send(embed=embed)
 
 # ヘルプテキスト
 help_str = """
@@ -130,26 +130,26 @@ async def on_message(message):
         
     # Minecraftサーバー
     if message.content == "/mcstart":
-        await chan_cmd.send("【Minecraft】サーバープロセスを実行します")
+        await cha_cmd.send("【Minecraft】サーバープロセスを実行します")
         MCserver.start()
     elif message.content == "/mcstop":
-        await chan_cmd.send("【Minecraft】サーバープロセスを停止します")
+        await cha_cmd.send("【Minecraft】サーバープロセスを停止します")
         MCserver.stop()
 
     # CoreKeeperサーバー
     if message.content == "/ckstart":
-        await chan_cmd.send("【CoreKeeper】サーバープロセスを実行します")
+        await cha_cmd.send("【CoreKeeper】サーバープロセスを実行します")
         CKserver.start()
     elif message.content == "/ckstop":
-        await chan_cmd.send("【CoreKeeper】サーバープロセスを停止します")
+        await cha_cmd.send("【CoreKeeper】サーバープロセスを停止します")
         CKserver.stop()
 
     # Terrariaサーバー
     if message.content == "/trstart":
-        await chan_cmd.send("【Terraria】サーバープロセスを実行します")
+        await cha_cmd.send("【Terraria】サーバープロセスを実行します")
         TRserver.start()
     elif message.content == "/trstop":
-        await chan_cmd.send("【Terraria】サーバープロセスを停止します")
+        await cha_cmd.send("【Terraria】サーバープロセスを停止します")
         TRserver.stop()
 
     # GameID表示
@@ -162,7 +162,7 @@ async def on_message(message):
 
     # ヘルプ
     if message.content == "/help":
-        await chan_cmd.send(help_str)
+        await cha_cmd.send(help_str)
 
 # 入退室をEmbedメッセージで表示
 @client.event
