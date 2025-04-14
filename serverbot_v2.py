@@ -53,8 +53,8 @@ class MyClient(Client):
   async def on_ready(self):
     await client.change_presence(activity=Game(name="/helpでヘルプを表示"))  #「○○をプレイ中」と表示するところ
     # 起動したらターミナルにログイン通知が表示される  
-    print(f"login: {self.user.name} [{self.user.id}]")    # Bot Name, [Bot ID]
-    print(discord.__version__)   # discord.py Version
+    print(f"login: {self.user.name} [ID:{self.user.id}]")    # Bot Name, [Bot ID]
+    print(f"discord.py Version: {discord.__version__}")   # discord.py Version
     print("------")
 
 # 接続に必要なオブジェクトを生成
