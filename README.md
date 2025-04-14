@@ -1,5 +1,5 @@
 サーバー監視・管理用Discord bot  
-コマンドでサーバープロセスを実行・停止したり、各サーバーの入退室（join, Left）を表示させるbot
+コマンドでサーバープロセスを実行・停止したり、各ゲームサーバーの入退室（join, Left）を表示させるbot
 <br>
 
 ## 開発環境
@@ -30,3 +30,5 @@
 - [pythonからterminalを操作する(subprocess)](https://qiita.com/studio_haneya/items/90207c440ba116b091c6)
 - [Pythonのsubprocess](https://qiita.com/tanabe13f/items/8d5e4e5350d217dec8f5)
 - [Pythonのsubprocessモジュールでコマンドプロンプトを起動してみた](https://www.school.ctc-g.co.jp/columns/hishinuma/hishinuma47.html)
+
+- [Minecraftサーバーを起動させるDiscord BotをPythonで](https://qiita.com/insane_catt/items/f8cc4053a65334a8c9c4)
