@@ -59,8 +59,8 @@ class MyClient(Client):
     print("------")
 
 class port_forward:    # ポート開放・クローズ
-  def __init__(self, GAME_NAME):
-    self.game_name = GAME_NAME
+  def __init__(self, target):
+    self.game_name = target
   def open(self):
     game_check(self.game_name)
     subprocess.popen(f"telnet {IP_ADDRESS} {PORT_NUMBER}")
