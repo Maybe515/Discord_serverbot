@@ -34,10 +34,6 @@ HELP_STR = """
 /help      コマンド一覧を表示
 """
 
-# test, debug
-PLAYER = "Maybe515"
-STATUS = "mc_join"
-
 # Import Libralies
 from discord import Intents, Client, Interaction, Game
 from discord.app_commands import CommandTree
