@@ -67,29 +67,29 @@ async def hello(interaction: Interaction):
 
 @client.tree.command(name="mcstart", description="Minecraftサーバーを起動する")    # /mcstart
 async def mcstart(interaction: Interaction):
-  if is_mcsrv_running():
+  if is_mcserver_running():
     await interaction.response.send_message("Minecraftサーバーは既に起動しています")
   else:
-    start_mcsrv()
+    start_mcserver()
     await interaction.response.send_message("Minecraftサーバーを起動します")
 
 @client.tree.command(name="mcstop", description="Minecraftサーバーを停止する")    # /mcstop
 async def mcstop(interaction: Interaction):
-  if is_mcsrv_running():
-    stop_mcsrv()
+  if is_mcserver_running():
+    stop_mcserver()
     await interaction.response.send_message("Minecraftサーバーを停止します")
   else:
     await interaction.response.send_message("Minecraftサーバーは既に停止されています")
 
-def is_mcsrv_running():  # サーバーが動作しているか確認する関数
+def is_mcserver_running():  # サーバーが動作しているか確認する関数
   process = subprocess.Popen(f"screen -ls {SCREEN_NAME}", stdout=subprocess.PIPE, shell=True)
   output, _ = process.communicate()
   return SCREEN_NAME in output.decode()
 
-def start_mcsrv():  # screenを利用してサーバーを起動するコマンド
+def start_mcserver():  # screenを利用してサーバーを起動するコマンド
   subprocess.Popen(f"screen -dmS {SCREEN_NAME} java -Xmx{MAX_RAM}G -Xms{MIN_RAM}G -jar {JAR_FILE} nogui", shell=True)
 
-def stop_mcsrv():  # サーバーを停止するコマンド
+def stop_mcserver():  # サーバーを停止するコマンド
   str = "stop"
   process = subprocess.Popen(f"screen -ls {SCREEN_NAME}", stdout=subprocess.PIPE, shell=True)
   process.communicate(str.encode())
