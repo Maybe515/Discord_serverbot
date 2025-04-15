@@ -60,16 +60,16 @@ class MyClient(Client):
 
 class Port_Forward:    # ポート開放・クローズ
   def __init__(self, target):
-    self.game_name = target
+    self.game = target
   def open(self):
-    game_check(self.game_name)
+    port_select(self.game)
     subprocess.popen(f"telnet {IP_ADDRESS} {PORT_NUMBER}")
   def close(self):
-    game_check(self.game_name)
+    port_select(self.game)
     PID = subprocess.popen(f"netstat -nao | find {PORT_NUMBER}")
     subprocess.popen(f"taskkill /pid {PID}")
 
-def game_check(target):
+def port_select(target):
   if target == "mc":
     PORT_NUMBER = "7777"
   elif target == "tr":
