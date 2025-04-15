@@ -58,6 +58,26 @@ class MyClient(Client):
     print(f"discord.py Version: {discord.__version__}")   # discord.py Version
     print("------")
 
+class port_forward:    # ポート開放・クローズ
+  def __init__(self, GAME_NAME)
+    PORT_NUMBER = None
+    PID = None
+  def open(self):
+    game_check(self)
+    subprocess.popen(f"telnet {IP_ADDRESS} {PORT_NUMBER}")
+  def close(self):
+    game_check(self)
+    PID = subprocess.popen(f"netstat -nao | find {PORT_NUMBER}")
+    subprocess.popen(f"taskkill /pid {PID}")
+port = port_forward(GAME_NAME)
+
+def game_check(target):
+  if target == "mc":
+    PORT_NUMBER = "7777"
+  elif target == "tr":
+    PORT_NUMBER = "7878"
+  return PORT_NUMBER
+
 # 接続に必要なオブジェクトを生成
 intents = Intents.default()
 client = MyClient(intents=intents)
@@ -73,6 +93,8 @@ async def mcstart(interaction: Interaction):
   else:
     start_mcserver()
     await interaction.response.send_message("Minecraftサーバーを起動します")
+    port.open("mc")
+    await interaction.response.send_message("ポート番号：{PORT_NUMBER}　開放中")
 
 @client.tree.command(name="mcstop", description="Minecraftサーバーを停止する")    # /mcstop
 async def mcstop(interaction: Interaction):
@@ -82,15 +104,15 @@ async def mcstop(interaction: Interaction):
   else:
     await interaction.response.send_message("Minecraftサーバーは既に停止されています")
 
-def is_mcserver_running():  # サーバーが動作しているか確認する関数
+def is_mcserver_running():  # MCサーバーが動作しているか確認する関数
   process = subprocess.Popen(f"screen -ls {SCREEN_NAME}", stdout=subprocess.PIPE, shell=True)
   output, _ = process.communicate()
   return SCREEN_NAME in output.decode()
 
-def start_mcserver():  # screenを利用してサーバーを起動するコマンド
+def start_mcserver():  # screenを利用してMCサーバーを起動するコマンド
   subprocess.Popen(f"screen -dmS {SCREEN_NAME} java -Xmx{MAX_RAM}G -Xms{MIN_RAM}G -jar {JAR_FILE} nogui", shell=True)
 
-def stop_mcserver():  # サーバーを停止するコマンド
+def stop_mcserver():  # MCサーバーを停止するコマンド
   cmd = "stop"
   process = subprocess.Popen(f"screen -ls {SCREEN_NAME}", stdout=subprocess.PIPE, shell=True)
   process.communicate(cmd.encode())
@@ -101,19 +123,11 @@ async def ckstart(interaction: Interaction):
 @client.tree.command(name="ckstop", description="Core Keeperサーバーを停止する")    # /ckstop
 async def ckstop(interaction: Interaction):
 
-
 @client.tree.command(name="trstart", description="Terrariaサーバーを起動する")    # /trstart
 async def trstart(interaction: Interaction):
 
 @client.tree.command(name="trstop", description="Terrarriaサーバーを停止する")    # /trstop
 async def trstop(interaction: Interaction):
-
-def open_port(game):
-  if game == "mc":
-    PORT_NUMBER = "7777"
-  elif game == "tr":
-    PORT_NUMBER = "7878"
-  subprocess.popen(f"telnet {IP_ADDRESS} {PORT_NUMBER}")
 
 @client.tree.command(name="mcid", description="【Minecraft】GameIDを表示する")    # /mcid
 async def mcid(interaction: Interaction):
