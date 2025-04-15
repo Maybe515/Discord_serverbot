@@ -71,9 +71,9 @@ class Port_Forward:    # ポート開放・クローズ
 
 def port_select(target):
   if target == "mc":
-    PORT_NUMBER = "7777"
+    PORT_NUMBER = "7777"    # Minecraft
   elif target == "tr":
-    PORT_NUMBER = "7878"
+    PORT_NUMBER = "7878"    # Terraria
   return PORT_NUMBER
 
 # オブジェクト生成
