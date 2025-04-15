@@ -85,6 +85,7 @@ port = Port_Forward(target)
 async def hello(interaction: Interaction):
   await interaction.response.send_message(f"Hello, {interaction.user.mention}!")
 
+# Minecraft サーバー操作
 @client.tree.command(name="mcstart", description="Minecraftサーバーを起動する")    # /mcstart
 async def mcstart(interaction: Interaction):
   if is_mcserver_running():
@@ -116,18 +117,21 @@ def stop_mcserver():  # MCサーバーを停止するコマンド
   process = subprocess.Popen(f"screen -ls {SCREEN_NAME}", stdout=subprocess.PIPE, shell=True)
   process.communicate(cmd.encode())
 
+# Core Keeper サーバー操作
 @client.tree.command(name="ckstart", description="Core Keeperサーバーを起動する")    # /ckstart
 async def ckstart(interaction: Interaction):
 
 @client.tree.command(name="ckstop", description="Core Keeperサーバーを停止する")    # /ckstop
 async def ckstop(interaction: Interaction):
 
+# Terraria サーバー操作
 @client.tree.command(name="trstart", description="Terrariaサーバーを起動する")    # /trstart
 async def trstart(interaction: Interaction):
 
 @client.tree.command(name="trstop", description="Terrarriaサーバーを停止する")    # /trstop
 async def trstop(interaction: Interaction):
 
+# GameID 表示
 @client.tree.command(name="mcid", description="【Minecraft】GameIDを表示する")    # /mcid
 async def mcid(interaction: Interaction):
     await interaction.response.send_message(f"{interaction.user.mention} {ID_MC}")
@@ -140,7 +144,8 @@ async def ckid(interaction: Interaction):
 async def trid(interaction: Interaction):
     await interaction.response.send_message(f"{interaction.user.mention} {ID_TR}")
 
-@client.tree.command(name="help", description="ヘルプテキストを表示する")    # /help
+# ヘルプテキスト表示
+@client.tree.command(name="help", description="コマンド一覧を表示する")    # /help
 async def help(interaction: Interaction):
     await interaction.response.send_message(f"{interaction.user.mention} {HELP_STR}")
 
