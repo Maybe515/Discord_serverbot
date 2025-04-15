@@ -59,7 +59,7 @@ class MyClient(Client):
     print("------")
 
 class port_forward:    # ポート開放・クローズ
-  def __init__(self, GAME_NAME)
+  def __init__(self, GAME_NAME):
     PORT_NUMBER = None
     PID = None
   def open(self):
