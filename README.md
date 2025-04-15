@@ -1,6 +1,6 @@
 ## 概要
 サーバー監視・管理用Discord bot  
-コマンドでサーバープロセスを実行・停止したり、各ゲームサーバーの入退室（join, Left）を表示させるbot  
+コマンドでサーバープロセスを実行・停止したり、各ゲームサーバーの入退室（join, Left）を表示させる  
 <br>
 
 ## 開発環境
@@ -14,12 +14,12 @@
 ## コマンド一覧
 - /mcstart　　【Minecraft】サーバープロセスを実行する
 - /mcstop　　【Minecraft】サーバープロセスを停止させる
-- /ckstart　　【CoreKeeper】サーバープロセスを実行する
-- /ckstop　　【CoreKeeper】サーバープロセスを停止させる
+- /ckstart　　【Core Keeper】サーバープロセスを実行する
+- /ckstop　　【Core Keeper】サーバープロセスを停止させる
 - /trstart　　【Terraria】サーバープロセスを実行する
 - /trstop　　【Terraria】サーバープロセスを停止させる
 - /mcid　　　【Minecraft】GameIDを表示する
-- /ckid　　　【CoreKeeper】GameIDを表示する
+- /ckid　　　【Core Keeper】GameIDを表示する
 - /trid　　　【Terraria】GameIDを表示する
 - /help　　　コマンド一覧を表示する
 <br>
