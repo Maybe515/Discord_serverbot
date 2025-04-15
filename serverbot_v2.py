@@ -18,6 +18,7 @@ SERVER_PATH = "minecraft/java/paper"  # Minecraftサーバー実行ファイル�
 SCREEN_NAME = "papermc"  # 使用するscreenセッション名
 MAX_RAM = "8"      # 任意の最大メモリ割り当てサイズ（デフォルト：5）
 MIN_RAM = "4"      # 任意の最小メモリ割り当てサイズ（デフォルト：2）
+IP_ADDRESS = ""
 
 # ヘルプテキスト
 HELP_STR = """
@@ -90,9 +91,9 @@ def start_mcserver():  # screenを利用してサーバーを起動するコマ�
   subprocess.Popen(f"screen -dmS {SCREEN_NAME} java -Xmx{MAX_RAM}G -Xms{MIN_RAM}G -jar {JAR_FILE} nogui", shell=True)
 
 def stop_mcserver():  # サーバーを停止するコマンド
-  str = "stop"
+  cmd = "stop"
   process = subprocess.Popen(f"screen -ls {SCREEN_NAME}", stdout=subprocess.PIPE, shell=True)
-  process.communicate(str.encode())
+  process.communicate(cmd.encode())
 
 @client.tree.command(name="ckstart", description="Core Keeperサーバーを起動する")    # /ckstart
 async def ckstart(interaction: Interaction):
@@ -100,11 +101,19 @@ async def ckstart(interaction: Interaction):
 @client.tree.command(name="ckstop", description="Core Keeperサーバーを停止する")    # /ckstop
 async def ckstop(interaction: Interaction):
 
+
 @client.tree.command(name="trstart", description="Terrariaサーバーを起動する")    # /trstart
 async def trstart(interaction: Interaction):
 
 @client.tree.command(name="trstop", description="Terrarriaサーバーを停止する")    # /trstop
 async def trstop(interaction: Interaction):
+
+def open_port(game):
+  if game == "mc":
+    PORT_NUMBER = "7777"
+  elif game == "tr":
+    PORT_NUMBER = "7878"
+  subprocess.popen(f"telnet {IP_ADDRESS} {PORT_NUMBER}")
 
 @client.tree.command(name="mcid", description="【Minecraft】GameIDを表示する")    # /mcid
 async def mcid(interaction: Interaction):
