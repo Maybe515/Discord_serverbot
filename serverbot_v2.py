@@ -52,7 +52,7 @@ class MyClient(Client):
     await self.tree.sync()
 
   async def on_ready(self):
-    await client.change_presence(activity=Game(name="/helpでヘルプを表示"))  #「○○をプレイ中」と表示するところ
+    await client.change_presence(activity=Game(name="Bot 動作中"))  #「○○をプレイ中」と表示するところ
     # 起動したらターミナルにログイン通知が表示される  
     print(f"login: {self.user.name} [ID:{self.user.id}]")    # Bot Name, [Bot ID]
     print(f"discord.py Version: {discord.__version__}")   # discord.py Version
