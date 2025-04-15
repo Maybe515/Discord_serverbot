@@ -58,7 +58,7 @@ class MyClient(Client):
     print(f"discord.py Version: {discord.__version__}")   # discord.py Version
     print("------")
 
-class port_forward:    # ポート開放・クローズ
+class Port_Forward:    # ポート開放・クローズ
   def __init__(self, target):
     self.game_name = target
   def open(self):
@@ -68,7 +68,6 @@ class port_forward:    # ポート開放・クローズ
     game_check(self.game_name)
     PID = subprocess.popen(f"netstat -nao | find {PORT_NUMBER}")
     subprocess.popen(f"taskkill /pid {PID}")
-port = port_forward(GAME_NAME)
 
 def game_check(target):
   if target == "mc":
@@ -77,9 +76,10 @@ def game_check(target):
     PORT_NUMBER = "7878"
   return PORT_NUMBER
 
-# 接続に必要なオブジェクトを生成
+# オブジェクト生成
 intents = Intents.default()
 client = MyClient(intents=intents)
+port = Port_Forward(target)
 
 @client.tree.command(name="hello", description="Hello, world!")    # /hello
 async def hello(interaction: Interaction):
