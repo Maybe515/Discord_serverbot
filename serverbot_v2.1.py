@@ -138,7 +138,7 @@ async def trid(interaction: Interaction):
 
 # ヘルプテキスト表示
 @client.tree.command(name="list", description="コマンドリストを表示する")    # /list
-async def help(interaction: Interaction):
+async def list(interaction: Interaction):
     await interaction.response.send_message(f"{interaction.user.mention} {LIST_STR}")
 
 # Botの起動とDiscordサーバーへの接続
