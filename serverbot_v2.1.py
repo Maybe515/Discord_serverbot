@@ -48,10 +48,10 @@ class MyClient(Client):
 class Port_Forward:    # ポート開放・クローズ
   def __init__(self, target):
     self.game = target
-  async def open(self):
+  def open(self):
     port_select(self.game)
     subprocess.Popen(f"telnet {IP_ADDRESS} {PORT_NUMBER}")
-  async def close(self):
+  def close(self):
     port_select(self.game)
     PID = subprocess.Popen(f"netstat -nao | find {PORT_NUMBER}")
     subprocess.Popen(f"taskkill /pid {PID}")
@@ -66,13 +66,13 @@ def port_select(target):
 class mcserver_Process:
   def __init__(self):
     self.cmd = [f"java -server -Xmx{MAX_RAM}G -Xms{MIN_RAM}G -jar {JAR_FILE} nogui"]
-  async def is_running(self):  # MCサーバーが動作しているか確認する
+  def is_running(self):  # MCサーバーが動作しているか確認する
     process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
     output, _ = process.communicate()
     return SCREEN_NAME in output.decode()
-  async def start(self):  # MCサーバーを起動するコマンド
+  def start(self):  # MCサーバーを起動するコマンド
     subprocess.Popen(self.cmd, shell=True)
-  async def stop(self):  # MCサーバーを停止するコマンド
+  def stop(self):  # MCサーバーを停止するコマンド
     cmd_stop = "stop"
     process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
     process.communicate(cmd_stop.encode())    
