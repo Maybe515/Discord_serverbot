@@ -9,6 +9,9 @@
 - Anaconda 2.6.5
 - pip 25.0.1
 - discord.py 2.5.2
+- DiscordSRV
+- Paper (MC Server Software)
+- screen
 <br>
 
 ## コマンド一覧
@@ -21,7 +24,7 @@
 - /mcid　　　【Minecraft】GameIDを表示する
 - /ckid　　　【Core Keeper】GameIDを表示する
 - /trid　　　【Terraria】GameIDを表示する
-- /help　　　コマンド一覧を表示する
+- /list　　　コマンドリストを表示する
 <br>
 
 ## 参考文献
