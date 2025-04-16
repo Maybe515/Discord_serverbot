@@ -63,7 +63,7 @@ def port_select(target):
     PORT_NUMBER = "7878"    # Terraria
   return PORT_NUMBER
 
-class mcserver_process:
+class mcserver_Process:
   def __init__(self):
     self.cmd = [f"java -server -Xmx{MAX_RAM}G -Xms{MIN_RAM}G -jar {JAR_FILE} nogui"]
   async def is_running(self):  # MCサーバーが動作しているか確認する
@@ -81,7 +81,7 @@ class mcserver_process:
 intents = Intents.default()
 client = MyClient(intents=intents)
 port = Port_Forward(target)
-mcserver = mcserver_process()
+mcserver = mcserver_Process()
 
 @client.tree.command(name="hello", description="Hello, world!")    # /hello
 async def hello(interaction: Interaction):
@@ -90,19 +90,22 @@ async def hello(interaction: Interaction):
 # Minecraft サーバー操作
 @client.tree.command(name="mcstart", description="Minecraftサーバーを起動する")    # /mcstart
 async def mcstart(interaction: Interaction):
+  target = "mc"
   if mcserver.is_running():
     await interaction.response.send_message("Minecraftサーバーは既に起動しています")
   else:
     mcserver.start()
     await interaction.response.send_message("Minecraftサーバーを起動します")
-    port.open("mc")
+    port.open()
     await interaction.response.send_message("ポート番号：{PORT_NUMBER}　開放中")
 
 @client.tree.command(name="mcstop", description="Minecraftサーバーを停止する")    # /mcstop
 async def mcstop(interaction: Interaction):
+  target = "mc"
   if mcserver.is_running():
     mcserver.stop()
     await interaction.response.send_message("Minecraftサーバーを停止します")
+    port.close()
   else:
     await interaction.response.send_message("Minecraftサーバーは既に停止されています")
 
