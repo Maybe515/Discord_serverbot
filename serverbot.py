@@ -39,10 +39,10 @@ class MyClient(Client):
   async def setup_hook(self) -> None:
     await self.tree.sync()
   async def on_ready(self):
-    await client.change_presence(activity=Game(name="Bot 動作中"))  #「○○をプレイ中」と表示するところ
+    await client.change_presence(activity=Game(name="Bot 動作中"))    #「○○をプレイ中」と表示するところ
     # 起動したらターミナルにログイン通知が表示される  
     print(f"login: {self.user.name} [ID:{self.user.id}]")    # Bot Name, [Bot ID]
-    print(f"discord.py Version: {discord.__version__}")   # discord.py Version
+    print(f"discord.py Version: {discord.__version__}")     # discord.py Version
     print("------")
 
 class Port_Forward:    # ポート開放・クローズ
@@ -66,13 +66,13 @@ def port_select(target):
 class mcserver_Process:
   def __init__(self):
     self.cmd = [f"java -server -Xmx{MAX_RAM}G -Xms{MIN_RAM}G -jar {JAR_FILE} nogui"]
-  def is_running(self):  # MCサーバーが動作しているか確認する
+  def is_running(self):    # MCサーバーが動作しているか確認する
     process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
     output, _ = process.communicate()
     return SCREEN_NAME in output.decode()
-  def start(self):  # MCサーバーを起動するコマンド
+  def start(self):    # MCサーバーを起動するコマンド
     subprocess.Popen(self.cmd, shell=True)
-  def stop(self):  # MCサーバーを停止するコマンド
+  def stop(self):    # MCサーバーを停止するコマンド
     cmd_stop = "stop"
     process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
     process.communicate(cmd_stop.encode())    
@@ -136,7 +136,7 @@ async def ckid(interaction: Interaction):
 async def trid(interaction: Interaction):
     await interaction.response.send_message(f"{interaction.user.mention} {ID_TR}")
 
-# ヘルプテキスト表示
+# コマンドリスト表示
 @client.tree.command(name="list", description="コマンドリストを表示する")    # /list
 async def list(interaction: Interaction):
     await interaction.response.send_message(f"{interaction.user.mention} {LIST_STR}")
