@@ -39,13 +39,13 @@ class MyClient(Client):
   async def setup_hook(self) -> None:
     await self.tree.sync()
   async def on_ready(self):
-    await client.change_presence(activity=Game(name="Bot 動作中"))    #「○○をプレイ中」と表示するところ
+    await client.change_presence(activity=Game(name="Bot 動作中"))    # ステータス表示
     # 起動したらターミナルにログイン通知が表示される  
     print(f"login: {self.user.name} [ID:{self.user.id}]")    # Bot Name, [Bot ID]
     print(f"discord.py Version: {discord.__version__}")     # discord.py Version
     print("------")
 
-class Port_Forward:    # ポート開放・クローズ
+class Port_Forward:
   def __init__(self, target):
     self.game = target
   def open(self):
@@ -77,11 +77,26 @@ class mcserver_Process:
     process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
     process.communicate(cmd_stop.encode())    
 
+class ckserver_Process:
+  def __init__(self):
+    self.cmd = [f"nogui"]
+  def is_running(self):    # CKサーバーが動作しているか確認する
+    process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
+    output, _ = process.communicate()
+    return SCREEN_NAME in output.decode()
+  def start(self):    # CKサーバーを起動するコマンド
+    subprocess.Popen(self.cmd, shell=True)
+  def stop(self):    # CKサーバーを停止するコマンド
+    cmd_stop = "q"
+    process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
+    process.communicate(cmd_stop.encode())    
+
 # オブジェクト生成
 intents = Intents.default()
 client = MyClient(intents=intents)
 port = Port_Forward(target)
 mcserver = mcserver_Process()
+ckserver = ckserver_Process()
 
 @client.tree.command(name="hello", description="Hello, world!")    # /hello
 async def hello(interaction: Interaction):
@@ -112,9 +127,19 @@ async def mcstop(interaction: Interaction):
 # Core Keeper サーバー操作
 @client.tree.command(name="ckstart", description="Core Keeperサーバーを起動する")    # /ckstart
 async def ckstart(interaction: Interaction):
+  if ckserver.is_running():
+    await interaction.response.send_message("Core Kepperサーバーは既に起動しています")
+  else:
+    ckserver.start()
+    await interaction.response.send_message("Core Keeperサーバーを起動します")
 
 @client.tree.command(name="ckstop", description="Core Keeperサーバーを停止する")    # /ckstop
 async def ckstop(interaction: Interaction):
+  if ckserver.is_running():
+    ckserver.stop()
+    await interaction.response.send_message("Core Keeperサーバーを停止します")
+  else:
+    await interaction.response.send_message("Core Keeperサーバーは既に停止されています")
 
 # Terraria サーバー操作
 @client.tree.command(name="trstart", description="Terrariaサーバーを起動する")    # /trstart
