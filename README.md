@@ -5,8 +5,7 @@
 
 ## 開発環境
 - Windows10 Pro 64bit
-- Python 3.12.7
-- Anaconda 2.6.5
+- Python 3.13.2
 - pip 25.0.1
 - discord.py 2.5.2
 - DiscordSRV
