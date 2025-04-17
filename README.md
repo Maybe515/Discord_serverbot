@@ -11,7 +11,6 @@
 - discord.py 2.5.2
 - DiscordSRV
 - Paper (MC Server Software)
-- screen
 <br>
 
 ## コマンド一覧
