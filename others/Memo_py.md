@@ -1,8 +1,13 @@
-## メソッド
+## Python導入
+### 参考文献
+- [Pythonの開発環境を用意しよう！（Windows）](https://prog-8.com/docs/python-env-win)
+- [Windows版Anacondaのインストール](https://www.python.jp/install/anaconda/windows/install.html)
+<br>
+
 ## def
 関数を定義するためのキーワード。<br>
 
-**基本的な関数定義：**
+### 基本的な関数定義
 ```python
 def test():
   print("Hello, World!")    # コンソールに「Hello, World!」と出力する
@@ -13,7 +18,7 @@ test()    # 関数の呼び出し
 括弧内に値や変数を入力することで、この関数内に情報を持ち込むことができる。<br>
 <br>
 
-**引数を指定する関数定義：**
+### 引数を指定する関数定義
 ```python
 def test(a):
   print(f"Hello, {a}!")    # コンソールに「Hello, ○○!」と出力する
@@ -24,7 +29,7 @@ test("Wndows")    # 関数の呼び出し
 例では`Windows`という文字列が変数`a`に格納されて、「Hello, Windows!」とコンソール上に出力される。<br>
 <br>
 
-**戻り値を指定する関数定義：**
+### 戻り値を指定する関数定義
 ```python
 def test(a, b):
   return a + b    #  変数aと変数b を加算
