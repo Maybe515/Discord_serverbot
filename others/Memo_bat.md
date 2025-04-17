@@ -1,4 +1,4 @@
-## bat cmd
+## cmd
 ### open Port
 `telnet <IP Addrees> <Port Number>`
 
