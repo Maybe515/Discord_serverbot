@@ -39,7 +39,7 @@ class MyClient(Client):
   async def setup_hook(self) -> None:
     await self.tree.sync()
   async def on_ready(self):
-    await client.change_presence(activity=Game(name="Bot 動作中"))    # ステータス表示
+    await client.change_presence(activity=Game(name="サーバー監視中"))    # ステータス表示
     # 起動したらターミナルにログイン通知が表示される  
     print(f"login: {self.user.name} [ID:{self.user.id}]")    # Bot Name, [Bot ID]
     print(f"discord.py Version: {discord.__version__}")     # discord.py Version
@@ -48,11 +48,10 @@ class MyClient(Client):
 class Port_Forward:
   def __init__(self, target):
     self.game = target
+    PORT_NUMBER = port_select(self.game)
   def open(self):
-    port_select(self.game)
     subprocess.Popen(f"telnet {IP_ADDRESS} {PORT_NUMBER}")
   def close(self):
-    port_select(self.game)
     PID = subprocess.Popen(f"netstat -nao | find {PORT_NUMBER}")
     subprocess.Popen(f"taskkill /pid {PID}")
 
