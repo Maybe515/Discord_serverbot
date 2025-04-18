@@ -1,4 +1,4 @@
-## Python＋IDE導入
+## Python + IDE導入
 ### 参考文献
 - [Pythonの開発環境を用意しよう！（Windows）](https://prog-8.com/docs/python-env-win)
 - [PyCharmインストール手順＜Windows向け＞](https://sukkiri.jp/technologies/ides/pycharm/pycharm-win.html)
