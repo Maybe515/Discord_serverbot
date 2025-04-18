@@ -3,6 +3,8 @@
 - [Pythonの開発環境を用意しよう！（Windows）](https://prog-8.com/docs/python-env-win)
 - [PyCharmインストール手順＜Windows向け＞](https://sukkiri.jp/technologies/ides/pycharm/pycharm-win.html)
 - [Anaconda完全アンインストール：手順と注意点](https://beginner-engineers.com/uninstall-anaconda/)
+- [pythonでimportできない時の調査](https://qiita.com/jmtsn/items/866a601424131c923b75)
+- [【Python入門】import ができない！を最速で解決する3ステップ](https://www.sejuku.net/blog/71311)
 <br>
 
 ## def
