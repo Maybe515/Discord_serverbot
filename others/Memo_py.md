@@ -5,6 +5,8 @@
 - [Anaconda完全アンインストール：手順と注意点](https://beginner-engineers.com/uninstall-anaconda/)
 - [pythonでimportできない時の調査](https://qiita.com/jmtsn/items/866a601424131c923b75)
 - [【Python入門】import ができない！を最速で解決する3ステップ](https://www.sejuku.net/blog/71311)
+- [Pythonモジュールのimportができなくなったときの対処記録](https://qiita.com/Kent_recuca/items/349586e9c034535f2991)
+- [インストールした外部ライブラリが import 出来ない](https://ja.stackoverflow.com/questions/59693/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%9F%E5%A4%96%E9%83%A8%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%81%8C-import-%E5%87%BA%E6%9D%A5%E3%81%AA%E3%81%84)
 <br>
 
 ## def
