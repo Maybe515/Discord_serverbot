@@ -30,7 +30,7 @@ LIST_STR = """
 # Import Libralies
 from discord import Intents, Client, Interaction, Game
 from discord.app_commands import CommandTree
-import subprocess
+from subprocess import Popen, PIPE
 
 class MyClient(Client):
   def __init__(self, intents: Intents) -> None:
@@ -46,54 +46,50 @@ class MyClient(Client):
     print("------")
 
 class Port_Forward:
-  def __init__(self, target):
-    self.game = target
-    PORT_NUMBER = port_select(self.game)
   def open(self):    # ポート開放
-    subprocess.Popen(f"telnet {IP_ADDRESS} {PORT_NUMBER}")
+    Popen(f"telnet {IP_ADDRESS} {self}")
   def close(self):    # ポートクローズ
-    PID = subprocess.Popen(f"netstat -nao | find {PORT_NUMBER}")
-    subprocess.Popen(f"taskkill /pid {PID}")
+    PID = Popen(f"netstat -nao | find {self}")
+    Popen(f"taskkill /pid {PID}")
 
 def port_select(target):
   if target == "mc":
-    PORT_NUMBER = "7777"    # Minecraft
+    p_num = "7777"    # Minecraft
   elif target == "tr":
-    PORT_NUMBER = "7878"    # Terraria
-  return PORT_NUMBER
+    p_num = "7878"    # Terraria
+  return p_num
 
 class mcserver_Process:
   def __init__(self):
     self.cmd = [f"java -server -Xmx{MAX_RAM}G -Xms{MIN_RAM}G -jar {JAR_FILE} nogui"]
   def is_running(self):    # MCサーバーが動作しているか確認する
-    process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
+    process = Popen(self.cmd, stdout=PIPE, shell=True)
     output, _ = process.communicate()
     return SCREEN_NAME in output.decode()
   def start(self):    # MCサーバーを起動するコマンド
-    subprocess.Popen(self.cmd, shell=True)
+    Popen(self.cmd, shell=True)
   def stop(self):    # MCサーバーを停止するコマンド
     cmd_stop = "stop"
-    process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
+    process = Popen(self.cmd, stdout=PIPE, shell=True)
     process.communicate(cmd_stop.encode())    
 
 class ckserver_Process:
   def __init__(self):
     self.cmd = [f"nogui"]
   def is_running(self):    # CKサーバーが動作しているか確認する
-    process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
+    process = Popen(self.cmd, stdout=PIPE, shell=True)
     output, _ = process.communicate()
     return SCREEN_NAME in output.decode()
   def start(self):    # CKサーバーを起動するコマンド
-    subprocess.Popen(self.cmd, shell=True)
+    Popen(self.cmd, shell=True)
   def stop(self):    # CKサーバーを停止するコマンド
     cmd_stop = "q"
-    process = subprocess.Popen(self.cmd, stdout=subprocess.PIPE, shell=True)
+    process = Popen(self.cmd, stdout=PIPE, shell=True)
     process.communicate(cmd_stop.encode())    
 
 # オブジェクト生成
 intents = Intents.default()
 client = MyClient(intents=intents)
-port = Port_Forward(target)
 mcserver = mcserver_Process()
 ckserver = ckserver_Process()
 
@@ -110,8 +106,9 @@ async def mcstart(interaction: Interaction):
   else:
     mcserver.start()
     await interaction.response.send_message("Minecraftサーバーを起動します")
-    port.open()
-    await interaction.response.send_message("ポート番号：{PORT_NUMBER}　開放中")
+    PORT_NUMBER = port_select(target)
+    Port_Forward.open(PORT_NUMBER)
+    await interaction.response.send_message(f"ポート番号：{PORT_NUMBER}　開放中")
 
 @client.tree.command(name="mcstop", description="Minecraftサーバーを停止する")    # /mcstop
 async def mcstop(interaction: Interaction):
@@ -119,7 +116,8 @@ async def mcstop(interaction: Interaction):
   if mcserver.is_running():
     mcserver.stop()
     await interaction.response.send_message("Minecraftサーバーを停止します")
-    port.close()
+    PORT_NUMBER = port_select(target)
+    Port_Forward.close(PORT_NUMBER)
   else:
     await interaction.response.send_message("Minecraftサーバーは既に停止されています")
 
