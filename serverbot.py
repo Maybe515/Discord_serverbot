@@ -49,9 +49,9 @@ class Port_Forward:
   def __init__(self, target):
     self.game = target
     PORT_NUMBER = port_select(self.game)
-  def open(self):
+  def open(self):    # ポート開放
     subprocess.Popen(f"telnet {IP_ADDRESS} {PORT_NUMBER}")
-  def close(self):
+  def close(self):    # ポートクローズ
     PID = subprocess.Popen(f"netstat -nao | find {PORT_NUMBER}")
     subprocess.Popen(f"taskkill /pid {PID}")
 
