@@ -9,6 +9,7 @@ ID_TR = ""    # Terraria
 # バッチコマンド用
 JAR_FILE = "xxx.jar"  # Minecraftサーバー実行ファイル名
 SERVER_PATH = "minecraft/java/paper"  # Minecraftサーバー実行ファイルのあるフォルダパス
+SCREEN_NAME = ""
 MAX_RAM = "8"      # 任意の最大メモリ割り当てサイズ（デフォルト：5）
 MIN_RAM = "4"      # 任意の最小メモリ割り当てサイズ（デフォルト：2）
 IP_ADDRESS = ""
@@ -148,20 +149,20 @@ async def trstop(interaction: Interaction):
 # GameID 表示
 @client.tree.command(name="mcid", description="【Minecraft】GameIDを表示する")    # /mcid
 async def mcid(interaction: Interaction):
-    await interaction.response.send_message(f"{interaction.user.mention} {ID_MC}")
+  await interaction.response.send_message(f"{interaction.user.mention} {ID_MC}")
 
 @client.tree.command(name="ckid", description="【Core Kepper】GameIDを表示する")    # /ckid
 async def ckid(interaction: Interaction):
-    await interaction.response.send_message(f"{interaction.user.mention} {ID_CK}")
+  await interaction.response.send_message(f"{interaction.user.mention} {ID_CK}")
 
 @client.tree.command(name="trid", description="【Terraria】GameIDを表示する")    # /trid
 async def trid(interaction: Interaction):
-    await interaction.response.send_message(f"{interaction.user.mention} {ID_TR}")
+  await interaction.response.send_message(f"{interaction.user.mention} {ID_TR}")
 
 # コマンドリスト表示
 @client.tree.command(name="list", description="コマンドリストを表示する")    # /list
 async def list(interaction: Interaction):
-    await interaction.response.send_message(f"{interaction.user.mention} {LIST_STR}")
+  await interaction.response.send_message(f"{interaction.user.mention} {LIST_STR}")
 
 # Botの起動とDiscordサーバーへの接続
-client.run(token)
+client.run(TOKEN)
