@@ -13,6 +13,7 @@ SCREEN_NAME = ""
 MAX_RAM = "8"      # 任意の最大メモリ割り当てサイズ（デフォルト：5）
 MIN_RAM = "4"      # 任意の最小メモリ割り当てサイズ（デフォルト：2）
 IP_ADDRESS = ""
+PORT_NUMBER = ""
 
 # コマンドリスト
 LIST_STR = """
